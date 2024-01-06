@@ -2,7 +2,7 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 
 exports.signUp = (req, res) => {
-    console.log('req body is',req.body);
+    console.log('req body is', req.body);
     const user = req.body;
     const uName = user.uName;
     const uEmail = user.uEmail;
@@ -33,5 +33,9 @@ exports.signUp = (req, res) => {
             .catch(err => console.log(err));
     });
 
+}
+
+exports.data = (req, res) => {
+    res.json({ data: 'Thnku' });
 }
 

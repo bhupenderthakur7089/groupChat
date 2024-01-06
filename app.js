@@ -6,7 +6,10 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const cors = require('cors');
-app.use(cors());
+app.use(cors({
+    origin: "http://127.0.0.1:5501",
+    method: ['GET', 'POST']
+}));
 
 const path = require('path');
 app.use(express.static(path.join(__dirname)));
