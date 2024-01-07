@@ -15,12 +15,7 @@ const User = con.define('user', {
         unique: true
     },
     password: sequelize.STRING,
-    mobile: {
-        type: sequelize.INTEGER,
-        allowNull: true,
-        defaultValue: 0,
-        unique: false
-    }
+    mobile: sequelize.STRING
 });
 
 module.exports = User;

@@ -1,4 +1,3 @@
-let form = document.getElementById('signUp');
 window.onload = (() => {
     axios
         .get('http://localhost:3000/data')
@@ -6,12 +5,14 @@ window.onload = (() => {
             console.log('response is', res.data);
         })
 })
+
+let form = document.getElementById('signUp');
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     uName = e.target.name.value;
     uEmail = e.target.email.value;
     uPassword = e.target.password.value;
-    uMobile = (e.target.mobile.value) * 1;
+    uMobile = (e.target.mobile.value) ;
     let user = {
         uName,
         uEmail,

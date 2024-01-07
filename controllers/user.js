@@ -10,7 +10,7 @@ exports.signUp = (req, res) => {
     const uPass = user.uPassword;
     const saltRound = 10;
     bcrypt.hash(uPass, saltRound, (err, hash) => {
-        console.log(hash);
+        console.log('hash is',hash);
         User
             .findAll({ where: { email: uEmail } })
             .then(user => {
