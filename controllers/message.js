@@ -23,6 +23,18 @@ exports.addMessage = async (req, res) => {
         });
 }
 
+exports.getMessage = (req, res) => {
+    Message
+        .findAll()
+        .then((messages) => {
+            console.log('Messages are as follows:', messages);
+            res.json({
+                messages: messages,
+            });
+        })
+        .catch(err => console.log(err));
+}
+
 exports.data = (req, res) => {
     res.json({ data: 'Hello World...This is a sample api which is being called on loading this window' });
 }
