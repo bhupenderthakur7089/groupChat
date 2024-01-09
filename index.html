@@ -12,9 +12,9 @@
 <body>
     <div class="container mt-5">
         <h5 class="text-center">Group Chat App</h5>
-        <div id="msg">
+        <!-- <div id="msg">
 
-        </div>
+        </div> -->
         <div class="row">
             <div class="col">
 
@@ -29,17 +29,17 @@
     </div>
     <nav class="navbar navbar-expand-lg fixed-bottom navbar-dark bg-dark">
         <div class="container">
-            <h3 class="navbar-brand">Group Chat App</h3>
         </div>
         <div class="input-group">
-            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-            <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init>search</button>
-          </div>
-        <ul class="navbar-nav">
-
-        </ul>
+            <input type="search" class="form-control rounded" id="msgContent" placeholder="Enter Your Message here..."
+                aria-label="Search" aria-describedby="search-addon" />
+            <button type="button" class="btn btn-outline-secondary" id="msgSend" data-mdb-ripple-init>Send</button>
+        </div>
+        <div class="container">
+        </div>
     </nav>
-
+    <script src="axios.min.js"></script>
+    <script src="index.js"></script>
 </body>
 
 </html>

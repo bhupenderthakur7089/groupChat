@@ -26,8 +26,15 @@ app.use(express.static(path.join(__dirname)));
 const user = require('./routes/user');
 app.use(user);
 
+const message = require('./routes/message');
+app.use(message);
+
 //database
 const User = require('./models/user');
+const Message = require('./models/message');
+
+Message.belongsTo(User, { constraints: true, onDelete: 'CASCADE' });
+User.hasMany(Message);
 
 const con = require('./util/database');
 con
