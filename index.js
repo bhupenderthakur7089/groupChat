@@ -12,7 +12,7 @@ msgSend.addEventListener('click', (e) => {
         .then((res) => {
             console.log('resposne object returned by backend is', res);
             if (res.data.success == true) {
-                alert('message inserted successfully');
+                console.log('message inserted successfully');
             } else {
                 alert('error while inserting message');
             }
@@ -30,7 +30,7 @@ function displayMessage(message) {
     messages.appendChild(list);
 }
 
-window.onload = () => {
+setInterval(() => {
     const token = localStorage.getItem('token');
     axios
         .get("http://localhost:3000/message", { headers: { "authorization": token } })
@@ -45,4 +45,4 @@ window.onload = () => {
         .catch((err) => {
             console.log(err);
         })
-}
+}, 500);
