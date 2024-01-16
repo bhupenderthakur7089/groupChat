@@ -2,7 +2,7 @@ const User = require('../models/user');
 const Message = require('../models/message');
 const dotenv = require('dotenv').config();
 const con = require('../util/database');
-
+const { Sequelize } = require('sequelize')
 exports.addMessage = async (req, res) => {
     console.log('req body is:', req.body)
     const message = req.body;
@@ -33,6 +33,37 @@ exports.getMessage = (req, res) => {
             });
         })
         .catch(err => console.log(err));
+}
+
+exports.getMessages = (req, res) => {
+    let lastMsgId = req.params.lastMsgId;
+    console.log('Lst Msg Id is:', lastMsgId);
+    if (lastMsgId == 'undefined') {
+        Message
+            .findAll()
+            .then((messages) => {
+                res.json({
+                    messages: messages,
+                });
+            })
+            .catch(err => console.log(err));
+    } else {
+        Message
+            .findAll({
+                where: {
+                    id: {
+                        [Sequelize.Op.gt]: lastMsgId,
+                    },
+                }
+            })
+            .then((messages) => {
+                console.log('Messages are as follows:', messages);
+                res.json({
+                    messages: messages,
+                });
+            })
+            .catch(err => console.log(err));
+    }
 }
 
 exports.data = (req, res) => {
