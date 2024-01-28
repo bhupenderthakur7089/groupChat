@@ -4,11 +4,9 @@ const dotenv = require('dotenv').config();
 const con = require('../util/database');
 const { Sequelize } = require('sequelize')
 exports.addMessage = async (req, res) => {
-    console.log('req body is:', req.body)
     const message = req.body;
     const msgContent = message.content;
     const t = await con.transaction();
-    console.log('Requesting user is:', req.user)
     req.user
         .createMessage({ content: msgContent }, { transaction: t })
         .then(async (result) => {

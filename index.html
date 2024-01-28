@@ -7,36 +7,90 @@
     <script src="./bootstrap.bundle.min.js" defer></script>
     <link rel="stylesheet" href="./bootstrap.min.css">
     <title>Group Chat Home</title>
+    <style>
+        main {
+            display: flex;
+            flex-wrap: nowrap;
+            height: 100vh;
+            max-height: 100vh;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container mt-3">
-        <h5 class="text-center">Group Chat App</h5>
+    <main>
+        <h1 class="visually-hidden">Sidebars examples</h1>
 
-        <div class="row">
-            <div class="col">
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+                <span class="fs-4">Group Chat</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto" id="groupList">
 
+                <div id="createGroupDiv" class="">
+
+                </div>
+            </ul>
+            <a href="#" class="nav-link active" id="createGroupBtn" aria-current="page">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#home"></use>
+                </svg>
+                Create Group
+            </a>
+            <hr>
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                    id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                    <strong>Profile</strong>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item" href="#">My Account</a></li>
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Sign out</a></li>
+                </ul>
             </div>
-            <div class="col-10 bg-secondary-subtle rounded-4 p-4 mb-2" id="messages"
-                style="height:550px;overflow: auto;">
+        </div>
 
-            </div>
-            <div class="col">
 
+        <div class="container mt-3">
+            <h5 class="text-center">Chat Section</h5>
+
+            <div class="row">
+                <div class="col">
+
+                </div>
+                <div class="col-10 bg-secondary-subtle rounded-4 p-4 mb-2" id="messages"
+                    style="height:550px;overflow: auto;">
+
+                </div>
+                <div class="col">
+
+                </div>
             </div>
         </div>
-    </div>
-    <nav class="navbar navbar-expand-lg fixed-bottom navbar-dark bg-dark">
-        <div class="container">
-        </div>
-        <div class="input-group">
-            <input type="search" class="form-control rounded" id="msgContent" placeholder="Enter Your Message here..."
-                aria-label="Search" aria-describedby="search-addon" />
-            <button type="button" class="btn btn-outline-secondary" id="msgSend" data-mdb-ripple-init>Send</button>
-        </div>
-        <div class="container">
-        </div>
-    </nav>
+        <nav class="navbar navbar-expand-lg fixed-bottom navbar-dark bg-dark">
+            <div class="container">
+            </div>
+            <div class="input-group">
+                <input type="search" class="form-control rounded" id="msgContent"
+                    placeholder="Enter Your Message here..." aria-label="Search" aria-describedby="search-addon" />
+                <button type="button" class="btn btn-outline-secondary" id="msgSend" data-mdb-ripple-init>Send</button>
+            </div>
+            <div class="container">
+            </div>
+        </nav>
+    </main>
     <script src="axios.min.js"></script>
     <script src="index.js"></script>
 </body>

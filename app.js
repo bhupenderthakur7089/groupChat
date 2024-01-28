@@ -14,14 +14,6 @@ app.use(cors({
 const path = require('path');
 app.use(express.static(path.join(__dirname)));
 
-// app.use((req, res) => {
-//     console.log('RL Requested is: ', req.url);
-//     if (req.url === '/') {
-//         res.sendFile(path.join(__dirname, 'signUp.html'));
-//     } else {
-//         res.sendFile(path.join(__dirname, `${req.url}`));
-//     }
-// })
 
 const user = require('./routes/user');
 app.use(user);
@@ -29,12 +21,19 @@ app.use(user);
 const message = require('./routes/message');
 app.use(message);
 
+const group = require('./routes/group');
+app.use(group);
+
 //database
 const User = require('./models/user');
 const Message = require('./models/message');
+const Group = require('./models/group');
+const UserGroup = require('./models/userGroup');
 
 Message.belongsTo(User, { constraints: true, onDelete: 'CASCADE' });
 User.hasMany(Message);
+User.belongsToMany(Group, { through: UserGroup });
+Group.belongsToMany(User, { through: UserGroup });
 
 const con = require('./util/database');
 con
@@ -45,6 +44,16 @@ con
     })
     .catch(err => console.log(err));
 
+
+
+// app.use((req, res) => {
+//     console.log('RL Requested is: ', req.url);
+//     if (req.url === '/') {
+//         res.sendFile(path.join(__dirname, 'signUp.html'));
+//     } else {
+//         res.sendFile(path.join(__dirname, `${req.url}`));
+//     }
+// })
 
 // const helmet = require('helmet');
 // app.use(helmet());
