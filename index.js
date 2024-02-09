@@ -11,7 +11,7 @@ createGroupBtn.addEventListener('click', (e) => {
     groupLabel.for = 'groupName';
 
     let submitBtn = document.createElement('anchor');
-    submitBtn.classList='btn btn-outline-primary mt-1';
+    submitBtn.classList = 'btn btn-outline-primary mt-1';
     submitBtn.innerHTML = 'Submit';
     submitBtn.addEventListener('click', (e) => {
         let groupName = {
@@ -85,11 +85,42 @@ function displayMessage(message) {
     messages.appendChild(list);
 }
 
+function displayGroups(group) {
+    let createGroupDiv = document.getElementById('createGroupDiv');
+    createGroupDiv.innerHTML = '';
+    let gName = group.name;
+    let groupList = document.getElementById('groupList');
+
+    let newGroupList = document.createElement('li');
+    newGroupList.classList = 'nav-item mt-1';
+
+    let newGroupBtn = document.createElement('anchor');
+    newGroupBtn.innerHTML = `${gName}`;
+    newGroupBtn.classList = 'nav-link active';
+
+    newGroupList.appendChild(newGroupBtn);
+    groupList.appendChild(newGroupList);
+    console.log('Group Added successfully');
+}
+
 addEventListener('DOMContentLoaded', (event) => {
     const token = localStorage.getItem('token');
     let msgString = localStorage.getItem('messages');
     let localMsgs = JSON.parse(msgString);
     console.log('localMsgs are', localMsgs);
+    axios
+        .get(`http://localhost:3000/groups`, { headers: { "authorization": token } })
+        .then((res) => {
+            let userGroups = res.data.groups;
+            console.log('Groups created By the current user are', userGroups);
+            for (let i = 0; i < userGroups.length; i++) {
+                console.log(userGroups[i].name);
+                displayGroups(userGroups[i]);
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        })
     if (localMsgs == null) {
         let lastMsgId = undefined;
         axios

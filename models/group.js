@@ -9,7 +9,10 @@ const Group = con.define('group', {
         primaryKey: true
     },
     name: sequelize.STRING,
-    createdBy: sequelize.STRING
+    createdBy: {
+        type: sequelize.INTEGER,
+        allowNull: false
+    }
 });
 
 module.exports = Group;

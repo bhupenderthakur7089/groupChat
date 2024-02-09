@@ -10,7 +10,7 @@ exports.createGroup = async (req, res) => {
     const groupName = req.body.name;
     const t = await con.transaction();
     Group
-        .create({ name: groupName, createdBy: req.user.name }, { transaction: t })
+        .create({ name: groupName, createdBy: req.user.id }, { transaction: t })
         .then(async (result) => {
             console.log('result after group creation is:', result);
             await t.commit();
@@ -21,4 +21,23 @@ exports.createGroup = async (req, res) => {
             await t.rollback();
             console.log(err)
         });
+}
+
+exports.getGroups = async (req, res) => {
+    let userId = req.user.id;
+    console.log('User Id is:', req.user.id);
+    const t = await con.transaction();
+    Group
+        .findAll({
+            where: {
+                createdBy: userId
+            }
+        })
+        .then((userGroups) => {
+            console.log('groups are', userGroups);
+            res.json({
+                groups: userGroups,
+            });
+        })
+        .catch(err => console.log(err));
 }

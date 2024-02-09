@@ -44,29 +44,3 @@ con
     })
     .catch(err => console.log(err));
 
-
-
-// app.use((req, res) => {
-//     console.log('RL Requested is: ', req.url);
-//     if (req.url === '/') {
-//         res.sendFile(path.join(__dirname, 'signUp.html'));
-//     } else {
-//         res.sendFile(path.join(__dirname, `${req.url}`));
-//     }
-// })
-
-// const helmet = require('helmet');
-// app.use(helmet());
-
-// const compression = require('compression');
-// app.use(compression());
-
-// const morgan = require('morgan');
-// app.use(morgan('combined', { stream: accessLogStream }));
-
-// const fs = require('fs');
-// const accessLogStream = fs.createWriteStream(
-//     path.join(__dirname, 'access.log'),
-//     { flags: 'a' }
-// );
-
